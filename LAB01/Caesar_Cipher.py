@@ -1,35 +1,22 @@
 def caesar_decrypt(ciphertext, shift):
-    """
-    Decrypts the ciphertext using a Caesar cipher with the given shift.
-
-    Parameters:
-    - ciphertext (str): The encrypted text.
-    - shift (int): The number of letters to shift backward to decrypt.
-
-    Returns:
-    - str: The decrypted plaintext.
-    """
-    decrypted = ""  # Store the decrypted output here
-
+    decrypted = []
     for char in ciphertext:
-        # Check if the character is a letter (A-Z or a-z)
         if char.isalpha():
-            # Determine ASCII base depending on uppercase or lowercase
+            # Preserve case
             base = ord('A') if char.isupper() else ord('a')
-            # Shift character backward by 'shift' within alphabet range (0-25)
-            decrypted += chr((ord(char) - base - shift) % 26 + base)
+            # Shift character and wrap around alphabet
+            decrypted_char = chr((ord(char) - base - shift) % 26 + base)
+            decrypted.append(decrypted_char)
         else:
-            # Non-alphabetic characters remain unchanged (spaces, punctuation)
-            decrypted += char
-
-    return decrypted
-
+            decrypted.append(char)
+    return ''.join(decrypted)
 
 ciphertext = "Hvs Eiwqy Pfckb Tcl Xiadg Cjsf Hvs Zonm Rcu."
 
-print("Brute-force Caesar Cipher Decryption:\n")
+print("All possible shifts:\n")
+for shift in range(26):
+    decrypted_text = caesar_decrypt(ciphertext, shift)
+    print(f"Shift {shift}: {decrypted_text}")
 
-# Try all possible shifts from 1 to 25 (26 would be original text)
-for shift in range(1, 26):
-    # Print shift number and decrypted text with that shift
-    print(f"Shift {shift:2}: {caesar_decrypt(ciphertext, shift)}")
+print("\nDecrypted text with shift 14:\n")
+print(caesar_decrypt(ciphertext, 14))
