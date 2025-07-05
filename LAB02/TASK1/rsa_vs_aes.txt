@@ -1,0 +1,11 @@
+RSA is an asymmetric encryption method that uses a key pair (public/private). 
+It is mainly used for secure key exchange, digital signatures, 
+or small data encryption. RSA is slower and computationally expensive, 
+especially with large files. Therefore, it's not ideal for encrypting large data.
+
+AES is a symmetric encryption algorithm using the same key for encryption and decryption. 
+It is fast, efficient, and widely used for bulk data encryption. AES-256 provides strong 
+security and performance, making it suitable for encrypting files, disks, and communications.
+
+In real-world systems, RSA often encrypts the AES key (used for bulk encryption), 
+combining both algorithms in a hybrid model for secure and fast communication.
