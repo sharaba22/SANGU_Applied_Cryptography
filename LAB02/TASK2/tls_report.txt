@@ -1,0 +1,28 @@
+TLS Handshake Explanation
+
+The TLS handshake is a process that initiates a secure communication channel 
+between the client and server. It includes steps like negotiating the protocol version, 
+selecting the cipher suite, authenticating the server via its digital certificate, and 
+establishing session keys using public-key cryptography. Once the handshake is complete, 
+encrypted communication begins using symmetric encryption.
+
+
+MITM Protection Mechanisms
+
+TLS protects against Man-in-the-Middle attacks primarily through:
+Certificate validation: The server sends a digital certificate signed by 
+a trusted Certificate Authority (CA). The browser verifies this against its trusted root CA list.
+
+Public-key encryption: Session keys are exchanged securely using asymmetric encryption, 
+making it difficult for attackers to intercept or alter the exchange.
+
+Integrity checks: TLS uses MAC (Message Authentication Code) to ensure 
+messages are not altered in transit.
+
+
+TLS Application in Websites
+
+TLS is used in HTTPS to secure all data exchanged between the browser and server. 
+It encrypts data such as login credentials, payment information, and personal details, 
+protecting them from eavesdropping or tampering. TLS also authenticates the server to 
+the client, ensuring users connect to the intended website and not an impostor.
