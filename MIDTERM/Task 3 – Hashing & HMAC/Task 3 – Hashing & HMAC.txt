@@ -1,0 +1,70 @@
+For these tasks I used Win64 OpenSSL Command Prompt OpenSSL 3.5.1 
+
+Task 3A: SHA-256 Hash
+
+1. Create data.txt with: Never trust, always verify.
+
+Command:
+echo Never trust, always verify. > data.txt
+
+Terminal output: None
+This command on the local storage creates a file with the name: data.txt and with content: Never trust, always verify.
+
+
+2. Hash it using Python or CLI.
+3. Submit hash output and code/command.
+
+Command:
+openssl dgst -sha256 data.txt
+
+Terminal output:
+SHA2-256(data.txt)= 0253b56bfa6d0875980b05a3e089fd94c97accc9b8e8a4e7cec8062ba6abbbce
+
+This command creates a SHA-256 hash of the file’s content:
+dgst: tells OpenSSL to compute a digest (hash).
+-sha256: specifies the SHA-256 algorithm.
+data.txt: is the input file.
+
+
+Task 3B: HMAC using SHA-256
+
+1. Use the key: secretkey123
+2. Create an HMAC for data.txt.
+
+Command:
+openssl dgst -sha256 -hmac "secretkey123" data.txt
+
+Terminal output:
+HMAC-SHA2-256(data.txt)= 33fbf52890422c78372adb437b234f6cbea4adb760250c0fa053bf250fa93ff5
+
+This command computes an HMAC (Hash-based Message Authentication Code)
+
+
+Task 3C: Integrity Check
+
+1. Change one letter in data.txt.
+
+Command:
+echo Never trust, always verifY. > data.txt
+
+Terminal output: None
+This command changes one letter in the file. Now the sentence ends with verifY. instead of verify.
+
+
+2. Recompute HMAC.
+
+Command:
+openssl dgst -sha256 -hmac "secretkey123" data.txt
+
+Terminal output:
+HMAC-SHA2-256(data.txt)= cf32edde98962e9fc10be4059f26d7535a97940bf37c8a41549e0869e15afb1f
+
+
+3. Explain what happens and why HMAC is important.
+
+Even though only one letter changed, the new HMAC is completely different from the original. 
+This proves the file’s integrity has been broken.
+HMAC is used to:
+Detect tampering — if someone changes even a single character, the HMAC won’t match.
+Verify authenticity — only someone with the correct secret key can produce a valid HMAC.
+This makes HMAC ideal for secure messaging, API authentication, and verifying downloaded files.

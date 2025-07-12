@@ -1,0 +1,47 @@
+For these tasks I used Win64 OpenSSL Command Prompt OpenSSL 3.5.1 
+
+Task 1A: Encrypt a file using AES-128-CBC
+
+1. Create a text file: secret.txt with the line: This file contains top secret information.
+
+Command:
+echo "This file contains top secret information." > secret.txt
+
+Terminal output: None
+This command on the local storage creates a file with the name: secret.txt and with content: This file contains top secret information.
+
+
+2. Use OpenSSL to encrypt it with a passphrase of your choice.
+3. Save the encrypted file as secret.enc.
+
+Command:
+openssl enc -aes-128-cbc -salt -pbkdf2 -iter 100000 -in secret.txt -out secret.enc -pass pass:sharabidze
+
+Terminal output: None
+This command on the local storage creates a file with the name: secret.enc.
+-aes-128-cbc: selects the cipher.
+-salt: adds random salt for stronger encryption.
+-pbkdf2: Enables the modern key derivation method.
+-iter 100000: Specifies the number of iterations (the higher, the better security, but slower).
+-in: is the input file.
+-out: is the output encrypted file.
+-pass pass:mysecretpass: provides the password directly.
+
+
+Task 1B: Decrypt secret.enc
+
+1. Decrypt the file.
+
+Command:
+openssl enc -d -aes-128-cbc -pbkdf2 -iter 100000 -in secret.enc -out decrypted.txt -pass pass:sharabidze
+
+Terminal output: None
+This command on the local storage creates a file with the name: decrypted.txt and with content: This file contains top secret information.
+
+
+2. Show that it matches the original.
+
+Command:
+type decrypted.txt
+
+Terminal output: "This file contains top secret information."

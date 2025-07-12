@@ -1,0 +1,63 @@
+For these tasks I used Win64 OpenSSL Command Prompt OpenSSL 3.5.1 
+
+Task 2A: Generate ECC keys
+
+1. Use the prime256v1 curve.
+2. Save private and public keys.
+
+Command:
+openssl ecparam -name prime256v1 -genkey -noout -out ecc_private.pem
+
+Terminal output: None
+This command on the local storage creates a private key with the name: ecc_private.pem
+-name prime256v1: selects the curve.
+-genkey: generates a key pair.
+-noout: hides the curve parameters from output.
+-out ecc_private.pem: saves the private key.
+
+Command:
+openssl ec -in ecc_private.pem -pubout -out ecc_public.pem
+
+Terminal output:
+read EC key
+writing EC key
+
+This command reads the private key and extracts the corresponding public key with the name: ecc_public.pem
+-pubout: means "output the public key."
+-out ecc_public.pem: saves it to a file.
+
+
+Task 2B: Sign and verify a message
+
+1. Create ecc.txt with Elliptic Curves are efficient.
+
+Command:
+echo Elliptic Curves are efficient. > ecc.txt
+
+Terminal output: None
+This command on the local storage creates a file named ecc.txt with a message we want to sign
+
+
+2. Sign it with your private key.
+
+Command:
+openssl dgst -sha256 -sign ecc_private.pem -out ecc.sig ecc.txt
+
+Terminal output: None
+This signs the file using your ECC private key.
+-sha256: hashes the message using SHA-256 before signing.
+-sign ecc_private.pem: uses the private key to sign.
+-out ecc.sig: saves the signature in a binary file.
+
+
+3. Verify it using your public key.
+
+Command:
+openssl dgst -sha256 -verify ecc_public.pem -signature ecc.sig ecc.txt
+
+Terminal output: Verified OK
+dgst: used for hashing, signing, and verifying.
+-sha256: Specifies that the SHA-256 hashing algorithm should be used. It hashes the content of the file before verifying the signature.
+-verify ecc_public.pem:	This tells OpenSSL to use the public key stored in ecc_public.pem to verify the signature.
+-signature ecc.sig:	Specifies the digital signature file that was previously created with the private key.
+ecc.txt:	This is the original message file whose signature you want to verify.
