@@ -1,0 +1,6 @@
+Signature Verification Explanation
+
+When Alice signed the message using her private key, a digital signature was generated and attached to the encrypted file.
+When Bob received the message and decrypted it using Alice’s public key to verify the signature.
+Since the signature is verified using Alice’s public key and the output said "Good signature from Alice alice@sharabidze.com",
+Bob can trust the message is from Alice and hasn’t been altered.

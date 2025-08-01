@@ -1,0 +1,23 @@
+Summary
+
+1. openssl s_client -connect youtube.com:443 (Screenshot of OpenSSL output (certificate details).png)
+
+2. Certificate Chain:
+   - Root CA: GlobalSign Root CA - R2
+   - Intermediate CA: GTS Root R4
+   - Leaf Certificate: *.google.com
+
+   Cipher suite used: TLS_AES_256_GCM_SHA384
+
+   TLS Version: TLS 1.3
+
+3. Wireshark TLS Handshake:
+   - Client Hello (Client Hello.png)
+   - Server Certificate (Server Hello.png)
+   - Key Exchange (Key Exchange.png)
+
+4. Confidentiality: TLS uses symmetric encryption (like AES) to ensure that data is encrypted during transmission.
+   Only the sender and receiver can decrypt it, preventing eavesdropping.
+
+   Integrity: TLS uses message authentication codes (MACs) or ciphers like AES-GCM to
+   detect if data has been tampered with during transmission.
